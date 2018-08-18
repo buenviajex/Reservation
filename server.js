@@ -14,9 +14,10 @@ var PORT = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Star Wars Characters (DATA)
+// Restaurant Table Reservations (DATA)
 // =============================================================
-
+var currentReservations = [];
+var waitlist = [];
 
 
 // Routes
