@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Star Wars - Express</title>
+  <title>Restaurant</title>
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -61,25 +61,27 @@
     </div>
   </div>
 
-<!--   <script type="text/javascript">
+  <script type="text/javascript">
     // Question: What does this code do?
     $("#add-btn").on("click", function(event) {
       event.preventDefault();
       var newReservation = {
         name: $("#name").val().trim(),
-        role: $("#phone-number").val().trim(),
-        age: $("#email").val().trim(),
-        forcePoints: $("#force-points").val().trim()
+        phone: $("#phone-number").val().trim(),
+        email: $("#email").val().trim(),
+        uniqueID: $("#unique-id").val().trim()
       };
 
+      console.log(newReservation);
+
       // Question: What does this code do??
-      $.post("/api/characters", newCharacter)
+      $.post("/api/reservations", newReservation)
         .then(function(data) {
           console.log("add.html", data);
-          alert("Adding character...");
+          alert("Adding reservation...");
         });
     });
-  </script> -->
+  </script>
 
 </body>
 </html>
