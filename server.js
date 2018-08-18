@@ -14,9 +14,18 @@ var PORT = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Star Wars Characters (DATA)
+// Reservations (DATA)
 // =============================================================
 
+var reservations = [
+  {
+    routeName: "reservation1",
+    name: "tony",
+    phone: 562,
+    email: "tonyfengli@gmail.com",
+    uniqueID: 1
+  }
+];
 
 
 // Routes
@@ -24,11 +33,29 @@ app.use(bodyParser.json());
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "reserved.html"));
+  res.sendFile(path.join(__dirname, "tables.html"));
 });
 
 app.get("/add", function(req, res) {
     res.sendFile(path.join(__dirname, "add.html"));
+});
+
+app.get("/api/reservations", function(req, res) {
+  return res.json(reservations);
+});
+
+app.post("/api/reservations", function(req, res) {
+  var newReservation = req.body;
+
+  // Using a RegEx Pattern to remove spaces from newCharacter
+  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+  newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newReservation);
+
+  reservations.push(newReservation);
+
+  res.json(newReservation);
 });
 
 

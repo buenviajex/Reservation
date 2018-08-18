@@ -28,11 +28,7 @@
           </div>
           <div class="panel-body">
             <div class="well">
-              <div id="stats">
-                <h3><strong>Name:</strong> <span id="name"></span></h3>
-                <h3><strong>Phone Number:</strong> <span id="phone-number"></span></h3>
-                <h3><strong>Email:</strong> <span id="email"></span></h3>
-                <h3><strong>Unique ID:</strong> <span id="unique-id"></span></h3>
+              <div id="tables">
               </div>
             </div>
           </div>
@@ -40,30 +36,27 @@
       </div>
     </div>
   </div>
-<!-- 
+
   <script type="text/javascript">
-    $("#search-btn").on("click", function() {
-      var searchedCharacter = $("#character-search").val().trim();
 
-      // Using a RegEx Pattern to remove spaces from searchedCharacter
-      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-      searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
-
-      $.get("/api/characters/" + searchedCharacter, function(data) {
+      $.get("/api/reservations", function(data) {
         console.log(data);
+        var tableDiv = $("#tables");
         if (data) {
-          $("#stats").show();
-          $("#name").text(data.name);
-          $("#role").text(data.role);
-          $("#age").text(data.age);
-          $("#force-points").text(data.forcePoints);
+          var tables = data.map(table => {        
+              var header = $("<h1>");
+              header.append(table.name);
+              return header;
+          });
+          
+          tableDiv.append(tables);
+          
         }
         else {
           $("#name").text("The force is not strong with this one. Your character was not found.");
           $("#stats").hide();
         }
       });
-    });
-  </script> -->
+  </script>
 </body>
 </html>
